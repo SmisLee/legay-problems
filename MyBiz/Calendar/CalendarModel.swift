@@ -34,4 +34,16 @@ import Foundation
 
 class CalendarModel {
   init() {}
+  
+  func convertBirthdays(_ employees: [Employee]) -> [Event] {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = Employee.birthdayFormat
+    return employees.compactMap {
+      if let dayString = $0.birthday, let day = dateFormatter.date(from: dayString), let nexBirthday = day.next() {
+        let title = $0.displayName + " Birthday"
+        return Event(name: title, date: nexBirthday, type: .birthday, duration: 0)
+      }
+      return nil
+    }
+  }
 }

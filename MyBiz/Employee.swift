@@ -39,6 +39,8 @@ struct Employee: Codable {
   let location: String
   let manager: String?
   let directReports: [String]
+  let birthday: String?
+  static let birthdayFormat = "MM-dd-yyyy"
 
   var displayName: String {
     var components = PersonNameComponents()
