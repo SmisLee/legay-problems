@@ -58,6 +58,16 @@ class CalendarModel {
       api.delegate = self
       api.getOrgChart()
     }
+  
+  var eventsCallback: ((Result<[Event], Error>) -> Void)?
+  
+  func getEvents(
+    completion: @escaping (Result<[Event], Error>) -> Void) {
+      
+      eventsCallback = completion
+      api.delegate = self
+      api.getEvents()
+    }
 }
 
 extension CalendarModel: APIDelegate {
@@ -71,7 +81,10 @@ extension CalendarModel: APIDelegate {
     // TBD - use the callback with an failure result
   }
   
-  func eventsLoaded(events: [Event]) {}
+  func eventsLoaded(events: [Event]) {
+    eventsCallback?(.success(events))
+    eventsCallback = nil
+  }
   func eventsFailed(error: Error) {}
   func loginFailed(error: Error) {}
   func loginSucceeded(userId: String) {}

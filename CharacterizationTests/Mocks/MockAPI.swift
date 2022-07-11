@@ -51,3 +51,24 @@ class MockAPI: API {
     }
   }
 }
+
+func mockEvents() -> [Event] {
+  let events = [
+    Event(
+      name: "Event 1",
+      date: Date(),
+      type: .appointment,
+      duration: .hours(1)),
+    Event(
+      name: "Event 2",
+      date: Date(timeIntervalSinceNow: .days(20)),
+      type: .meeting,
+      duration: .minutes(30)),
+    Event(
+      name: "Event 3",
+      date: Date(timeIntervalSinceNow: -.days(1)),
+      type: .domesticHoliday,
+      duration: .days(1))
+  ]
+  return events
+}

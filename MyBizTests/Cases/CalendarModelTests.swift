@@ -115,6 +115,7 @@ class CalendarModelTests: XCTestCase {
 
   func testModel_whenBirthdaysLoaded_getBirthdayEvents() {
     // given
+    let expectedEvents = mockBirthdayEvents()
     mockAPI.mockEmployees = mockEmployees()
     let exp = expectation(description: "birthdays loaded")
     
@@ -127,7 +128,6 @@ class CalendarModelTests: XCTestCase {
     
     // then
     wait(for: [exp], timeout: 1)
-    let expectedEvents = mockBirthdayEvents()
     XCTAssertEqual(loadedEvents, expectedEvents)
   }
 }
