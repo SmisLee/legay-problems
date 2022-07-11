@@ -41,4 +41,13 @@ class MockAPI: API {
       self.delegate?.eventsLoaded(events: self.mockEvents)
     }
   }
+  
+  // MARK: - Org
+  var mockEmployees: [Employee] = []
+  
+  override func getOrgChart() {
+    DispatchQueue.main.async {
+      self.delegate?.orgLoaded(org: self.mockEmployees)
+    }
+  }
 }

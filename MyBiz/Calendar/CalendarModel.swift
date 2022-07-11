@@ -33,7 +33,12 @@
 import Foundation
 
 class CalendarModel {
-  init() {}
+  let api: API
+  var birthdayCallback: ((Result<[Event], Error>) -> Void)?
+  
+  init(api: API) {
+    self.api = api
+  }
   
   func convertBirthdays(_ employees: [Employee]) -> [Event] {
     let dateFormatter = DateFormatter()
@@ -49,6 +54,33 @@ class CalendarModel {
   
   func getBirthdays(
     completion: @escaping (Result<[Event], Error>) -> Void) {
-      
+      birthdayCallback = completion
+      api.delegate = self
+      api.getOrgChart()
     }
+}
+
+extension CalendarModel: APIDelegate {
+  func orgLoaded(org: [Employee]) {
+    let birthdays = convertBirthdays(org)
+    birthdayCallback?(.success(birthdays))
+    birthdayCallback = nil
+  }
+  
+  func orgFailed(error: Error) {
+    // TBD - use the callback with an failure result
+  }
+  
+  func eventsLoaded(events: [Event]) {}
+  func eventsFailed(error: Error) {}
+  func loginFailed(error: Error) {}
+  func loginSucceeded(userId: String) {}
+  func announcementsFailed(error: Error) {}
+  func announcementsLoaded(announcements: [Announcement]) {}
+  func productsLoaded(products: [Product]) {}
+  func productsFailed(error: Error) {}
+  func purchasesLoaded(purchases: [PurchaseOrder]) {}
+  func purchasesFailed(error: Error) {}
+  func userLoaded(user: UserInfo) {}
+  func userFailed(error: Error) {}
 }

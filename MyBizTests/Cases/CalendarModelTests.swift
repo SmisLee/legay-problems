@@ -34,15 +34,18 @@ import XCTest
 @testable import MyBiz
 
 class CalendarModelTests: XCTestCase {
+  var mockAPI: MockAPI!
   var sut: CalendarModel!
   
   override func setUpWithError() throws {
     try super.setUpWithError()
-    sut = CalendarModel()
+    mockAPI = MockAPI()
+    sut = CalendarModel(api: mockAPI)
   }
   
   override func tearDownWithError() throws {
     sut = nil
+    mockAPI = nil
     try super.tearDownWithError()
   }
   
@@ -112,6 +115,7 @@ class CalendarModelTests: XCTestCase {
 
   func testModel_whenBirthdaysLoaded_getBirthdayEvents() {
     // given
+    mockAPI.mockEmployees = mockEmployees()
     let exp = expectation(description: "birthdays loaded")
     
     // when

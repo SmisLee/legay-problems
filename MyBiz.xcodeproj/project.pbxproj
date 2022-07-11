@@ -67,8 +67,9 @@
 		4C6896622733676400337089 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6896612733676300337089 /* SceneDelegate.swift */; };
 		BA899555287BB95C00900E5A /* CalendarViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA899554287BB95C00900E5A /* CalendarViewControllerTests.swift */; };
 		BA899558287BC04C00900E5A /* MockAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA899557287BC04C00900E5A /* MockAPI.swift */; };
-		BA899569287BC2C900900E5A /* CalendarModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA899568287BC2C900900E5A /* CalendarModelTests.swift */; };
 		BA8995C2287BE00500900E5A /* CalendarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8995C1287BE00500900E5A /* CalendarModel.swift */; };
+		BA8995C4287BFED400900E5A /* MockAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA899557287BC04C00900E5A /* MockAPI.swift */; };
+		BA8995C5287BFEDA00900E5A /* CalendarModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA899568287BC2C900900E5A /* CalendarModelTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -560,7 +561,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BA899569287BC2C900900E5A /* CalendarModelTests.swift in Sources */,
+				BA8995C4287BFED400900E5A /* MockAPI.swift in Sources */,
+				BA8995C5287BFEDA00900E5A /* CalendarModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
