@@ -46,4 +46,9 @@ class CalendarModel {
       return nil
     }
   }
+  
+  func getBirthdays(
+    completion: @escaping (Result<[Event], Error>) -> Void) {
+      
+    }
 }
