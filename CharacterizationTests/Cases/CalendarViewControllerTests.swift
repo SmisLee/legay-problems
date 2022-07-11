@@ -31,15 +31,21 @@
 /// THE SOFTWARE.
 
 import XCTest
+@testable import MyBiz
 
 class CalendarViewControllerTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
+  var sut: CalendarViewController!
+  
+  override func setUpWithError() throws {
+    try super.setUpWithError()
+    sut = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Calendar") as? CalendarViewController
+    sut.loadViewIfNeeded()
+  }
+  
+  override func tearDownWithError() throws {
+    sut = nil
+    try super.tearDownWithError()
+  }
+  
 }
