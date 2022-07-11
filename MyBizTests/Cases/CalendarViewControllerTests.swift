@@ -33,49 +33,40 @@
 import XCTest
 @testable import MyBiz
 
-class CalendarModelTests: XCTestCase {
+class CalendarViewControllerTests: XCTestCase {
+  
+  var sut: CalendarViewController!
   var mockAPI: MockAPI!
-  var sut: CalendarModel!
   
   override func setUpWithError() throws {
-    try super.setUpWithError()
+    super.setUp()
+    sut = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Calendar") as? CalendarViewController
     mockAPI = MockAPI()
-    sut = CalendarModel(api: mockAPI)
+    sut.api = mockAPI
+    sut.loadViewIfNeeded()
   }
   
   override func tearDownWithError() throws {
-    sut = nil
     mockAPI = nil
-    try super.tearDownWithError()
+    sut = nil
+    super.tearDown()
   }
-
-  func testModel_whenGivenEmployeeList_generatesBirthdayEvents() {
+  
+  func testLoadEvents_getsBirthdays() {
     // given
-    let employees = mockEmployees()
-    
-    // when
-    let events = sut.convertBirthdays(employees)
-    
-    // then
-    let expectedEvents = mockBirthdayEvents()
-    XCTAssertEqual(events, expectedEvents)
-  }
-
-  func testModel_whenBirthdaysLoaded_getBirthdayEvents() {
-    // given
-    let expectedEvents = mockBirthdayEvents()
     mockAPI.mockEmployees = mockEmployees()
-    let exp = expectation(description: "birthdays loaded")
+    let expectedEvents = mockBirthdayEvents()
     
     // when
-    var loadedEvents: [Event]?
-    sut.getBirthdays { res in
-      loadedEvents = try? res.get()
-      exp.fulfill()
+    let predicate = NSPredicate { _, _ -> Bool in
+      !self.sut.events.isEmpty
     }
+    let exp = expectation(for: predicate, evaluatedWith: sut, handler: nil)
+    
+    sut.loadEvents()
     
     // then
     wait(for: [exp], timeout: 1)
-    XCTAssertEqual(loadedEvents, expectedEvents)
+    XCTAssertEqual(sut.events, expectedEvents)
   }
 }

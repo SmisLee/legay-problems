@@ -70,6 +70,7 @@
 		BA8995C2287BE00500900E5A /* CalendarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8995C1287BE00500900E5A /* CalendarModel.swift */; };
 		BA8995C4287BFED400900E5A /* MockAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA899557287BC04C00900E5A /* MockAPI.swift */; };
 		BA8995C5287BFEDA00900E5A /* CalendarModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA899568287BC2C900900E5A /* CalendarModelTests.swift */; };
+		BA8995C7287C001A00900E5A /* CalendarViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8995C6287C001A00900E5A /* CalendarViewControllerTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -158,6 +159,7 @@
 		BA899567287BC2C800900E5A /* MyBizTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MyBizTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		BA899568287BC2C900900E5A /* CalendarModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarModelTests.swift; sourceTree = "<group>"; };
 		BA8995C1287BE00500900E5A /* CalendarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarModel.swift; sourceTree = "<group>"; };
+		BA8995C6287C001A00900E5A /* CalendarViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewControllerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -319,6 +321,7 @@
 			children = (
 				BA899568287BC2C900900E5A /* CalendarModelTests.swift */,
 				BA899567287BC2C800900E5A /* MyBizTests-Bridging-Header.h */,
+				BA8995C6287C001A00900E5A /* CalendarViewControllerTests.swift */,
 			);
 			path = Cases;
 			sourceTree = "<group>";
@@ -562,6 +565,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA8995C4287BFED400900E5A /* MockAPI.swift in Sources */,
+				BA8995C7287C001A00900E5A /* CalendarViewControllerTests.swift in Sources */,
 				BA8995C5287BFEDA00900E5A /* CalendarModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
