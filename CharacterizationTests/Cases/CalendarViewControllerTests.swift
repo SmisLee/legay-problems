@@ -48,4 +48,19 @@ class CalendarViewControllerTests: XCTestCase {
     try super.tearDownWithError()
   }
   
+  func testLoadEvents_getsData() {
+    // when
+    sut.loadEvents()
+    
+    let predicate = NSPredicate { _, _ -> Bool in
+      return !self.sut.events.isEmpty
+    }
+    
+    let exp = expectation(for: predicate, evaluatedWith: sut, handler: nil)
+    
+    // then
+    wait(for: [exp], timeout: 2)
+    print(sut.events)
+  }
+  
 }

@@ -43,10 +43,14 @@ class CalendarViewController: UIViewController {
     calendarView.scrollingMode = .stopAtEachCalendarFrame
   }
 
-  override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(animated)
+  func loadEvents() {
     api.delegate = self
     api.getEvents()
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    loadEvents()
   }
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
