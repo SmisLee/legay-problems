@@ -30,55 +30,15 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 
-import XCTest
+import Foundation
 @testable import MyBiz
 
-class CalendarViewControllerTests: XCTestCase {
-
-  var sut: CalendarViewController!
-  var mockAPI: MockAPI!
+class MockAPI: API {
+  var mockEvents: [Event] = []
   
-  override func setUpWithError() throws {
-    try super.setUpWithError()
-    sut = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Calendar") as? CalendarViewController
-    mockAPI = MockAPI()
-    sut.api = mockAPI
-    sut.loadViewIfNeeded()
-  }
-  
-  override func tearDownWithError() throws {
-    sut = nil
-    mockAPI = nil
-    try super.tearDownWithError()
-  }
-  
-  func testLoadEvents_getsData() {
-    // given
-    let eventJson = """
-      [{"name": "Alien invasion", "date": "2021-11-05T12:00:00+0000",
-      "type": "Appointment", "duration": 3600.0},
-        {"name": "Interview with Hydra", "date": "2021-11-05T17:30:00+0000",
-      "type": "Appointment", "duration": 1800.0},
-        {"name": "Panic attack", "date": "2021-11-12T15:00:00+0000",
-      "type": "Meeting", "duration": 3600.0}]
-      """
-    let data = Data(eventJson.utf8)
-    let decoder = JSONDecoder()
-    decoder.dateDecodingStrategy = .iso8601
-    let expectedEvents = try! decoder.decode([Event].self, from: data)
-    
-    mockAPI.mockEvents = expectedEvents
-    
-    // when
-    let predicate = NSPredicate { _, _ -> Bool in
-      return !self.sut.events.isEmpty
+  override func getEvents() {
+    DispatchQueue.main.async {
+      self.delegate?.eventsLoaded(events: self.mockEvents)
     }
-    let exp = expectation(for: predicate, evaluatedWith: sut, handler: nil)
-    sut.loadEvents()
-    
-    // then
-    wait(for: [exp], timeout: 2)
-    XCTAssertEqual(sut.events, expectedEvents)
   }
-  
 }

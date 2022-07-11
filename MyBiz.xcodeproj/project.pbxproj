@@ -66,6 +66,7 @@
 		4C68966027335BB400337089 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C68965F27335BB300337089 /* Main.storyboard */; };
 		4C6896622733676400337089 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6896612733676300337089 /* SceneDelegate.swift */; };
 		BA899555287BB95C00900E5A /* CalendarViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA899554287BB95C00900E5A /* CalendarViewControllerTests.swift */; };
+		BA899558287BC04C00900E5A /* MockAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA899557287BC04C00900E5A /* MockAPI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -142,6 +143,7 @@
 		BA899549287BB90F00900E5A /* CharacterizationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CharacterizationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA899553287BB95C00900E5A /* CharacterizationTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CharacterizationTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		BA899554287BB95C00900E5A /* CalendarViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewControllerTests.swift; sourceTree = "<group>"; };
+		BA899557287BC04C00900E5A /* MockAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAPI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -259,6 +261,7 @@
 		BA89954A287BB90F00900E5A /* CharacterizationTests */ = {
 			isa = PBXGroup;
 			children = (
+				BA899556287BC03D00900E5A /* Mocks */,
 				BA899552287BB92800900E5A /* Cases */,
 			);
 			path = CharacterizationTests;
@@ -271,6 +274,14 @@
 				BA899553287BB95C00900E5A /* CharacterizationTests-Bridging-Header.h */,
 			);
 			path = Cases;
+			sourceTree = "<group>";
+		};
+		BA899556287BC03D00900E5A /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				BA899557287BC04C00900E5A /* MockAPI.swift */,
+			);
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -460,6 +471,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA899558287BC04C00900E5A /* MockAPI.swift in Sources */,
 				BA899555287BB95C00900E5A /* CalendarViewControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

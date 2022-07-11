@@ -35,7 +35,7 @@ import UIKit
 class CalendarViewController: UIViewController {
   @IBOutlet weak var calendarView: JTAppleCalendarView!
 
-  var api: API { return (UIApplication.shared.delegate as! AppDelegate).api }
+  var api: API = UIApplication.appDelegate.api
   var events: [Event] = []
 
   override func viewDidLoad() {
