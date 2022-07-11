@@ -60,7 +60,19 @@ class CalendarViewControllerTests: XCTestCase {
     
     // then
     wait(for: [exp], timeout: 2)
-    print(sut.events)
+    let eventJson = """
+      [{"name": "Alien invasion", "date": "2021-11-05T12:00:00+0000",
+      "type": "Appointment", "duration": 3600.0},
+        {"name": "Interview with Hydra", "date": "2021-11-05T17:30:00+0000",
+      "type": "Appointment", "duration": 1800.0},
+        {"name": "Panic attack", "date": "2021-11-12T15:00:00+0000",
+      "type": "Meeting", "duration": 3600.0}]
+      """
+    let data = Data(eventJson.utf8)
+    let decoder = JSONDecoder()
+    decoder.dateDecodingStrategy = .iso8601
+    let expectedEvents = try? decoder.decode([Event].self, from: data)
+    XCTAssertEqual(sut.events, expectedEvents)
   }
   
 }
