@@ -78,30 +78,6 @@ class CalendarViewController: UIViewController {
   }
 }
 
-extension CalendarViewController: APIDelegate {
-  func announcementsFailed(error: Error) {}
-  func announcementsLoaded(announcements: [Announcement]) {}
-  func productsLoaded(products: [Product]) {}
-  func productsFailed(error: Error) {}
-  func purchasesLoaded(purchases: [PurchaseOrder]) {}
-  func purchasesFailed(error: Error) {}
-  func orgLoaded(org: [Employee]) {}
-  func orgFailed(error: Error) {}
-  func loginFailed(error: Error) {}
-  func loginSucceeded(userId: String) {}
-  func userLoaded(user: UserInfo) {}
-  func userFailed(error: Error) {}
-
-  func eventsLoaded(events: [Event]) {
-    self.events = events
-    calendarView.reloadData()
-  }
-
-  func eventsFailed(error: Error) {
-    showAlert(title: "Could not load events", subtitle: error.localizedDescription)
-  }
-}
-
 extension CalendarViewController: JTAppleCalendarViewDataSource {
   func configureCalendar(_ calendar: JTAppleCalendarView) -> ConfigurationParameters {
     let startDate = Date(timeIntervalSinceNow: -.days(60))
