@@ -45,4 +45,69 @@ class CalendarModelTests: XCTestCase {
     sut = nil
     try super.tearDownWithError()
   }
+  
+  func mockEmployees() -> [Employee] {
+    let employees = [
+      Employee(
+        id: "Cap",
+        givenName: "Steve",
+        familyName: "Rogers",
+        location: "Brooklyn",
+        manager: nil,
+        directReports: [],
+        birthday: "07-04-1920"),
+      Employee(
+        id: "Surfer",
+        givenName: "Norrin",
+        familyName: "Radd",
+        location: "Zenn-La",
+        manager: nil,
+        directReports: [],
+        birthday: "03-01-1966"),
+      Employee(
+        id: "Wasp",
+        givenName: "Hope",
+        familyName: "van Dyne",
+        location: "San Francisco",
+        manager: nil,
+        directReports: [],
+        birthday: "01-02-1979")
+    ]
+    return employees
+  }
+
+  func mockBirthdayEvents() -> [Event] {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = Employee.birthdayFormat
+    return [
+      Event(
+        name: "Steve Rogers Birthday",
+        date: dateFormatter.date(from: "07-04-1920")!.next()!,
+        type: .birthday,
+        duration: 0),
+      Event(
+        name: "Norrin Radd Birthday",
+        date: dateFormatter.date(from: "03-01-1966")!.next()!,
+        type: .birthday,
+        duration: 0),
+      Event(
+        name: "Hope van Dyne Birthday",
+        date: dateFormatter.date(from: "01-02-1979")!.next()!,
+        type: .birthday,
+        duration: 0)
+    ]
+  }
+
+  func testModel_whenGivenEmployeeList_generatesBirthdayEvents() {
+    // given
+    let employees = mockEmployees()
+    
+    // when
+    let events = sut.convertBirthdays(employees)
+    
+    // then
+    let expectedEvents = mockBirthdayEvents()
+    XCTAssertEqual(events, expectedEvents)
+  }
+
 }
