@@ -37,15 +37,28 @@ class CalendarViewController: UIViewController {
 
   var api: API = UIApplication.appDelegate.api
   var events: [Event] = []
+  var model: CalendarModel!
 
   override func viewDidLoad() {
     super.viewDidLoad()
     calendarView.scrollingMode = .stopAtEachCalendarFrame
+    model = CalendarModel(api: api)
   }
 
   func loadEvents() {
-    api.delegate = self
-    api.getEvents()
+    events = []
+    model.getBirthdays { res in
+      if let newEvents = try? res.get() {
+        self.events.append(contentsOf: newEvents)
+        self.calendarView.reloadData()
+      }
+    }
+    model.getEvents { res in
+      if let newEvents = try? res.get() {
+        self.events.append(contentsOf: newEvents)
+        self.calendarView.reloadData()
+      }
+    }
   }
   
   override func viewWillAppear(_ animated: Bool) {
